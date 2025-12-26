@@ -3,7 +3,8 @@ import '../models/user.dart';
 import '../models/whatsapp_account.dart';
 
 class ApiService {
-  static const String baseUrl = 'https://api.atlantisgrev.com'; // TODO: Update with actual URL
+  // Update this with your production API URL
+  static const String baseUrl = 'http://localhost:8080'; // Change to production URL when deploying
   late final Dio _dio;
   String? _accessToken;
 
@@ -29,7 +30,9 @@ class ApiService {
       onError: (error, handler) {
         // Handle token expiration
         if (error.response?.statusCode == 401) {
-          // TODO: Implement token refresh
+          // Token refresh logic would go here
+          // For now, user needs to re-login
+          _accessToken = null;
         }
         return handler.next(error);
       },
@@ -225,4 +228,3 @@ class ApiService {
     }
   }
 }
-

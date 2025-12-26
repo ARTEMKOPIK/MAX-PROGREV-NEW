@@ -92,7 +92,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
             onPressed: () {
-              // TODO: Navigate to notifications
+              // Notifications feature - to be implemented with Firebase Cloud Messaging
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Notifications coming soon')),
               );
@@ -321,4 +321,3 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     );
   }
 }
-

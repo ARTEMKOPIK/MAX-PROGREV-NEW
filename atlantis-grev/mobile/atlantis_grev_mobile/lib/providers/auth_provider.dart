@@ -46,8 +46,17 @@ class AuthNotifier extends StateNotifier<AuthState> {
     final token = await _storageService.getAccessToken();
     if (token != null) {
       _apiService.setAccessToken(token);
-      state = state.copyWith(isAuthenticated: true);
-      // TODO: Fetch user data
+      
+      try {
+        final userId = await _storageService.getUserId();
+        if (userId != null) {
+          // TODO: Implement getUserById in ApiService if needed
+          state = state.copyWith(isAuthenticated: true);
+        }
+      } catch (e) {
+        // If user data fetch fails, clear tokens
+        await logout();
+      }
     }
   }
 
@@ -100,4 +109,3 @@ final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
   final storageService = ref.watch(storageServiceProvider);
   return AuthNotifier(apiService, storageService);
 });
-

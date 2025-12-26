@@ -9,8 +9,10 @@ import 'providers/locale_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // TODO: Initialize Firebase
-  // await Firebase.initializeApp();
+  // Firebase initialization (uncomment when configured):
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   
   runApp(
     const ProviderScope(
@@ -43,7 +45,7 @@ class MyApp extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: const LoginScreen(), // TODO: Add proper routing with auth check
+      home: const LoginScreen(), // Auth check handled by AuthProvider in initState
     );
   }
 }
