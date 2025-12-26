@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "igX8hfUW4J0=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\artemkopik\\Desktop\\MAX-PROGREV-NEW-main\\atlantis-grev\\warming-service\\AtlantisGrev.WarmingService\\AtlantisGrev.WarmingService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\artemkopik\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\artemkopik\\.nuget\\packages\\selenium.webdriver\\4.16.2\\selenium.webdriver.4.16.2.nupkg.sha512",
+    "C:\\Users\\artemkopik\\.nuget\\packages\\selenium.webdriver.chromedriver\\120.0.6099.10900\\selenium.webdriver.chromedriver.120.0.6099.10900.nupkg.sha512"
+  ],
+  "logs": []
+}

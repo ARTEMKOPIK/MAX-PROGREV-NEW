@@ -1,0 +1,36 @@
+# ============================================
+# КОНФИГУРАЦИЯ ATLANTIS GREV
+# ============================================
+# 
+# Заполни эти 4 поля своими данными:
+# (остальное можешь не трогать)
+#
+
+# 1. SUPABASE (База данных)
+# Получи здесь: https://supabase.com → твой проект → Settings → API
+SUPABASE_URL=https://fabgbicnpaxhevwazyox.supabase.co
+SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhYmdiaWNucGF4aGV2d2F6eW94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY3NzY3MTAsImV4cCI6MjA4MjM1MjcxMH0.yPvGL7JsNCDIKKsOnFHnL7bNAC_k2NBJ6VhNj3OTprY
+
+# 2. CRYPTO PAY (Платежи)
+# Получи здесь: Telegram @CryptoBot → создай приложение
+CRYPTOPAY_TOKEN=362233:AAsMjUotcz8zmMsstcRKFiacIlsQ2p7JObA
+
+# 3. JWT SECRET (Безопасность)
+# Придумай любую строку минимум 32 символа (можешь не менять)
+JWT_SECRET=atlantis-grev-super-secret-key-change-this-in-production-12345
+
+# ============================================
+# ДОПОЛНИТЕЛЬНЫЕ НАСТРОЙКИ (можно не трогать)
+# ============================================
+
+# Порты (если не заняты - не меняй)
+BACKEND_PORT=5000
+WARMING_SERVICE_PORT=5001
+
+# JWT настройки
+JWT_ISSUER=AtlantisGrev
+JWT_EXPIRATION_DAYS=7
+
+# Warming Service
+MAX_CONCURRENT_JOBS=5
+
