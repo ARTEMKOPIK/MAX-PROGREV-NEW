@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../utils/app_theme.dart';
 import '../../providers/referrals_provider.dart';
+import '../../providers/auth_provider.dart';
 import '../../services/api_service.dart';
 
 class ReferralsScreen extends ConsumerStatefulWidget {
@@ -598,4 +599,3 @@ class _ReferralsScreenState extends ConsumerState<ReferralsScreen> {
     }
   }
 }
-
