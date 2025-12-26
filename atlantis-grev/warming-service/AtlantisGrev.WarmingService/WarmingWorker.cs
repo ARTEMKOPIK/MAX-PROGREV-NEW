@@ -1,5 +1,3 @@
-using MaxTelegramBot;
-
 namespace AtlantisGrev.WarmingService;
 
 public class WarmingWorker
