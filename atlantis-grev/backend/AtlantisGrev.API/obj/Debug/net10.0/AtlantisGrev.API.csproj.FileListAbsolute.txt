@@ -41,3 +41,4 @@ C:\Users\artemkopik\Desktop\MAX-PROGREV-NEW-main\atlantis-grev\backend\AtlantisG
 C:\Users\artemkopik\Desktop\MAX-PROGREV-NEW-main\atlantis-grev\backend\AtlantisGrev.API\obj\Debug\net10.0\AtlantisGrev.API.pdb
 C:\Users\artemkopik\Desktop\MAX-PROGREV-NEW-main\atlantis-grev\backend\AtlantisGrev.API\obj\Debug\net10.0\AtlantisGrev.API.genruntimeconfig.cache
 C:\Users\artemkopik\Desktop\MAX-PROGREV-NEW-main\atlantis-grev\backend\AtlantisGrev.API\obj\Debug\net10.0\ref\AtlantisGrev.API.dll
+C:\Users\artemkopik\Desktop\MAX-PROGREV-NEW-main\atlantis-grev\backend\AtlantisGrev.API\obj\Debug\net10.0\AtlantisGrev.API.sourcelink.json

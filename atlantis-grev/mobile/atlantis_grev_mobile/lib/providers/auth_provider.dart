@@ -43,21 +43,24 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   Future<void> _checkAuthStatus() async {
+    state = state.copyWith(isLoading: true);
+    
     final token = await _storageService.getAccessToken();
-    if (token != null) {
+    if (token != null && token.isNotEmpty) {
       _apiService.setAccessToken(token);
       
-      try {
-        final userId = await _storageService.getUserId();
-        if (userId != null) {
-          // TODO: Implement getUserById in ApiService if needed
-          state = state.copyWith(isAuthenticated: true);
-        }
-      } catch (e) {
-        // If user data fetch fails, clear tokens
-        await logout();
+      final userId = await _storageService.getUserId();
+      if (userId != null) {
+        // User is authenticated, set state
+        state = state.copyWith(
+          isAuthenticated: true,
+          isLoading: false,
+        );
+        return;
       }
     }
+    
+    state = state.copyWith(isLoading: false);
   }
 
   Future<bool> login(int telegramId, String username, {String? referralCode}) async {
@@ -72,7 +75,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       
       await _storageService.saveAccessToken(accessToken);
       await _storageService.saveRefreshToken(refreshToken);
-      await _storageService.saveUserId(userData['id']);
+      await _storageService.saveUserId((userData['id'] as num).toInt());
       
       _apiService.setAccessToken(accessToken);
       

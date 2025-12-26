@@ -111,7 +111,7 @@ class _AccountStoreScreenState extends ConsumerState<AccountStoreScreen> {
         if (shouldOpen == true) {
           // Open invoice URL in browser
           final uri = Uri.parse(invoiceUrl);
-          if (await canLaunchUrl(uri)) {
+          try {
             await launchUrl(uri, mode: LaunchMode.externalApplication);
             
             if (mounted) {
@@ -128,8 +128,8 @@ class _AccountStoreScreenState extends ConsumerState<AccountStoreScreen> {
               );
               Navigator.pop(context); // Return to previous screen
             }
-          } else {
-            throw Exception('Could not open invoice URL');
+          } catch (e) {
+            throw Exception('Could not open invoice URL: $e');
           }
         }
       }

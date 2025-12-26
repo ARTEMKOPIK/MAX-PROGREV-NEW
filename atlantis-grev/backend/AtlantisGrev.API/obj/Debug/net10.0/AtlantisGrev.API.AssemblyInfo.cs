@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AtlantisGrev.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8f56d31892a4e0f7d9fc1e88d9db2fc01fdc7470")]
 [assembly: System.Reflection.AssemblyProductAttribute("AtlantisGrev.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AtlantisGrev.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

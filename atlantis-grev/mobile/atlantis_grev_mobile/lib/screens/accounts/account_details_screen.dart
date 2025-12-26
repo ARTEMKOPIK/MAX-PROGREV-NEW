@@ -344,7 +344,7 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
                         ),
                         const SizedBox(height: 12),
 
-                        if (!_account!.isWarming)
+                        if (_account!.canStartWarming)
                           ElevatedButton.icon(
                             onPressed: _handleStartWarming,
                             icon: const Icon(Icons.play_arrow),
@@ -354,7 +354,17 @@ class _AccountDetailsScreenState extends ConsumerState<AccountDetailsScreen> {
                               backgroundColor: AppTheme.primaryColor,
                             ),
                           )
-                        else ...[
+                        else if (_account!.canResumeWarming)
+                          ElevatedButton.icon(
+                            onPressed: () => _handleWarmingAction('resume'),
+                            icon: const Icon(Icons.play_arrow),
+                            label: const Text('Resume Warming'),
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              backgroundColor: AppTheme.primaryColor,
+                            ),
+                          )
+                        else if (_account!.canPauseWarming) ...[
                           Row(
                             children: [
                               Expanded(

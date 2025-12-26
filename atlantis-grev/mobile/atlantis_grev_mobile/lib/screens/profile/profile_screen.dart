@@ -5,7 +5,6 @@ import '../../utils/app_theme.dart';
 import '../../utils/app_localizations.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/locale_provider.dart';
-import '../auth/login_screen.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -224,13 +223,7 @@ class ProfileScreen extends ConsumerWidget {
 
                 if (confirmed == true && context.mounted) {
                   await ref.read(authProvider.notifier).logout();
-                  
-                  if (context.mounted) {
-                    Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (_) => const LoginScreen()),
-                      (route) => false,
-                    );
-                  }
+                  // Navigation is handled by main.dart watching authProvider
                 }
               },
               icon: const Icon(Icons.logout),

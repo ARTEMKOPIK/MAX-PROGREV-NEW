@@ -21,14 +21,16 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['id'],
-      username: json['username'],
-      paidAccounts: json['paidAccounts'],
-      referrals: json['referrals'],
-      affiliateBalance: (json['affiliateBalance'] as num).toDouble(),
-      totalEarned: (json['totalEarned'] as num).toDouble(),
-      affiliateCode: json['affiliateCode'],
-      registrationDate: DateTime.parse(json['registrationDate']),
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      username: json['username'] as String? ?? '',
+      paidAccounts: (json['paidAccounts'] as num?)?.toInt() ?? 0,
+      referrals: (json['referrals'] as num?)?.toInt() ?? 0,
+      affiliateBalance: (json['affiliateBalance'] as num?)?.toDouble() ?? 0.0,
+      totalEarned: (json['totalEarned'] as num?)?.toDouble() ?? 0.0,
+      affiliateCode: json['affiliateCode'] as String? ?? '',
+      registrationDate: json['registrationDate'] != null 
+          ? DateTime.parse(json['registrationDate']) 
+          : DateTime.now(),
     );
   }
 

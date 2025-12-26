@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'screens/auth/login_screen.dart';
+import 'screens/home/dashboard_screen.dart';
 import 'utils/app_theme.dart';
 import 'utils/app_localizations.dart';
 import 'providers/locale_provider.dart';
+import 'providers/auth_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +29,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(localeProvider);
+    final authState = ref.watch(authProvider);
     
     return MaterialApp(
       title: 'Atlantis Grev',
@@ -45,7 +48,13 @@ class MyApp extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: const LoginScreen(), // Auth check handled by AuthProvider in initState
+      home: authState.isLoading
+          ? const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            )
+          : authState.isAuthenticated
+              ? const DashboardScreen()
+              : const LoginScreen(),
     );
   }
 }

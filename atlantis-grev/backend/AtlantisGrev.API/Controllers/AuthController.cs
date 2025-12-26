@@ -27,8 +27,11 @@ public class AuthController : ControllerBase
     {
         try
         {
+            _logger.LogInformation("Login attempt: TelegramId={TelegramId}, Username={Username}", request.TelegramId, request.Username);
+            
             // Get or create user
             var user = await _supabaseService.GetUserAsync(request.TelegramId);
+            _logger.LogInformation("GetUserAsync result: {User}", user != null ? "found" : "not found");
             
             if (user == null)
             {
@@ -49,6 +52,8 @@ public class AuthController : ControllerBase
                     request.Username,
                     referrerId
                 );
+                
+                _logger.LogInformation("CreateUserAsync result: {User}", user != null ? "created" : "failed");
 
                 if (user == null)
                     return BadRequest(ApiResponse<LoginResponse>.ErrorResponse("Failed to create user"));
@@ -69,9 +74,9 @@ public class AuthController : ControllerBase
                     Username = user.Username,
                     PaidAccounts = user.PaidAccounts,
                     Referrals = user.Referrals,
-                    AffiliateBalance = user.AffiliateBalance,
-                    TotalEarned = user.TotalEarned,
-                    AffiliateCode = user.AffiliateCode,
+                    AffiliateBalance = 0, // Not in DB yet
+                    TotalEarned = 0, // Not in DB yet
+                    AffiliateCode = $"REF{user.Id}", // Generate from user ID
                     RegistrationDate = user.RegistrationDate
                 }
             };

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../utils/app_theme.dart';
 import '../../providers/auth_provider.dart';
-import '../home/dashboard_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -44,9 +43,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       
       if (mounted) {
         if (success) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const DashboardScreen()),
-          );
+          // Navigation is handled by main.dart watching authProvider
+          // No need to manually navigate
         } else {
           final error = ref.read(authProvider).error ?? 'Login failed';
           ScaffoldMessenger.of(context).showSnackBar(

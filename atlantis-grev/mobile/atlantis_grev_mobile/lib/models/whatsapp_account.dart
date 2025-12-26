@@ -23,12 +23,14 @@ class WhatsAppAccount {
 
   factory WhatsAppAccount.fromJson(Map<String, dynamic> json) {
     return WhatsAppAccount(
-      id: json['id'],
-      phoneNumber: json['phoneNumber'],
-      status: json['status'],
-      warmingStatus: json['warmingStatus'],
-      warmingProgress: json['warmingProgress'],
-      createdAt: DateTime.parse(json['createdAt']),
+      id: json['id'] as String? ?? '',
+      phoneNumber: json['phoneNumber'] as String? ?? '',
+      status: json['status'] as String? ?? 'Idle',
+      warmingStatus: json['warmingStatus'] as String? ?? 'NotStarted',
+      warmingProgress: (json['warmingProgress'] as num?)?.toInt() ?? 0,
+      createdAt: json['createdAt'] != null 
+          ? DateTime.parse(json['createdAt']) 
+          : DateTime.now(),
       warmingStartedAt: json['warmingStartedAt'] != null 
           ? DateTime.parse(json['warmingStartedAt']) 
           : null,
