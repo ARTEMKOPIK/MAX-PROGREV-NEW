@@ -53,13 +53,49 @@ public class WarmingController : ControllerBase
             await _supabaseService.UpdateAccountWarmingStatusAsync(account.Id, WarmingStatus.Queued);
             await _supabaseService.AddAccountLogAsync(account.Id, "Warming queued");
 
-            // Here you would send a request to the warming service
-            // For now, we'll just update the status
-            var warmingServiceUrl = _configuration["WarmingService:Url"];
-            if (!string.IsNullOrEmpty(warmingServiceUrl))
+            // Send HTTP request to warming service
+            var warmingServiceUrl = _configuration["WarmingService:Url"] ?? "http://localhost:5001";
+            try
             {
-                // TODO: Send HTTP request to warming service
-                _logger.LogInformation($"Would send warming request to: {warmingServiceUrl}");
+                using var httpClient = new HttpClient();
+                httpClient.Timeout = TimeSpan.FromSeconds(30);
+                
+                var warmingRequest = new
+                {
+                    accountId = account.Id,
+                    phoneNumber = account.PhoneNumber,
+                    config = new
+                    {
+                        dailyMessages = 50,
+                        messageInterval = 30,
+                        enableGroupMessages = true,
+                        enableStatusUpdates = true
+                    }
+                };
+
+                var content = new StringContent(
+                    System.Text.Json.JsonSerializer.Serialize(warmingRequest),
+                    System.Text.Encoding.UTF8,
+                    "application/json"
+                );
+
+                var response = await httpClient.PostAsync($"{warmingServiceUrl}/api/warming/start", content);
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    _logger.LogInformation($"Successfully sent warming request to service for account {account.Id}");
+                    await _supabaseService.UpdateAccountWarmingStatusAsync(account.Id, WarmingStatus.InProgress);
+                }
+                else
+                {
+                    _logger.LogWarning($"Warming service returned status {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Failed to send warming request to service: {ex.Message}");
+                // Don't fail the whole request if warming service is unavailable
+                // Account is already queued and will be picked up when service is available
             }
 
             var response = new WarmingStatusDto
@@ -223,4 +259,3 @@ public class WarmingController : ControllerBase
         }
     }
 }
-
