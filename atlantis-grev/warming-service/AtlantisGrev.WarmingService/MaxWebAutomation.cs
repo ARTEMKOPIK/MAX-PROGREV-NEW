@@ -10,7 +10,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace MaxTelegramBot
+namespace AtlantisGrev.WarmingService
 {
 	public sealed class MaxWebAutomation : IAsyncDisposable
 	{
@@ -336,4 +336,4 @@ namespace MaxTelegramBot
 			await Task.CompletedTask;
 		}
 	}
-} 
+}
