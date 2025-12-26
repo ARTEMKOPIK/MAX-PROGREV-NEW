@@ -4,6 +4,7 @@ using AtlantisGrev.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Text.Json;
 
 namespace AtlantisGrev.API.Controllers;
 
@@ -221,4 +222,3 @@ public class AccountsController : ControllerBase
         }
     }
 }
-
