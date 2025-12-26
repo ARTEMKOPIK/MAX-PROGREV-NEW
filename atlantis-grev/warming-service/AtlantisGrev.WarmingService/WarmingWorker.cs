@@ -1,3 +1,5 @@
+using MaxTelegramBot;
+
 namespace AtlantisGrev.WarmingService;
 
 public class WarmingWorker
@@ -140,4 +142,3 @@ public class WarmingWorker
         _cts.Cancel();
     }
 }
-
