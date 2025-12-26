@@ -140,4 +140,3 @@ public class WarmingWorker
         _cts.Cancel();
     }
 }
-

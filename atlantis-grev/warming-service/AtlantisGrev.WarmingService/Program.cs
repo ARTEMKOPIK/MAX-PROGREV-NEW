@@ -45,4 +45,3 @@ Console.WriteLine();
 await worker.StartAsync();
 
 Console.WriteLine("[Service] Stopped");
-

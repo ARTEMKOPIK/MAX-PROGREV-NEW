@@ -10,7 +10,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace MaxTelegramBot
+namespace AtlantisGrev.WarmingService
 {
 	public sealed class MaxWebAutomation : IAsyncDisposable
 	{
@@ -313,6 +313,29 @@ namespace MaxTelegramBot
 			return s.Replace("\\", "\\\\").Replace("'", "\\'");
 		}
 
+		// Stub methods for WarmingWorker compatibility
+		public async Task<bool> OpenWhatsAppAsync(string sessionDir)
+		{
+			// TODO: Implement WhatsApp Web opening logic
+			// For now, return true as a stub
+			await Task.Delay(100);
+			return true;
+		}
+
+		public async Task<bool> WaitForLoginAsync(string sessionDir)
+		{
+			// TODO: Implement login waiting logic
+			// For now, return true as a stub
+			await Task.Delay(100);
+			return true;
+		}
+
+		public async Task CloseAsync()
+		{
+			// Delegate to CloseBrowserAsync
+			await CloseBrowserAsync();
+		}
+
 		public async Task CloseBrowserAsync()
 		{
 			try
@@ -336,4 +359,4 @@ namespace MaxTelegramBot
 			await Task.CompletedTask;
 		}
 	}
-} 
+}
