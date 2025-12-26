@@ -98,7 +98,7 @@ public class WarmingController : ControllerBase
                 // Account is already queued and will be picked up when service is available
             }
 
-            var response = new WarmingStatusDto
+            var statusResponse = new WarmingStatusDto
             {
                 AccountId = account.Id,
                 Status = WarmingStatus.Queued.ToString(),
@@ -108,7 +108,7 @@ public class WarmingController : ControllerBase
                 RecentLogs = new List<string> { "Warming queued" }
             };
 
-            return Ok(ApiResponse<WarmingStatusDto>.SuccessResponse(response, "Warming started successfully"));
+            return Ok(ApiResponse<WarmingStatusDto>.SuccessResponse(statusResponse, "Warming started successfully"));
         }
         catch (Exception ex)
         {
